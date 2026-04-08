@@ -1,0 +1,23 @@
+/* ==============================================
+   FONTS.CSS — Подключение исторических шрифтов
+   ============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Переменные шрифтов */
+:root {
+  /* Готический декоративный — для заголовков Hero */
+  --font-gothic: 'UnifrakturMaguntia', cursive;
+
+  /* Античный декоративный — для заголовков секций */
+  --font-cinzel-deco: 'Cinzel Decorative', cursive;
+
+  /* Классический античный — для подзаголовков */
+  --font-cinzel: 'Cinzel', serif;
+
+  /* Старинный книжный — для основного текста */
+  --font-fell: 'IM Fell English', serif;
+
+  /* Элегантный serif — для карточек и описаний */
+  --font-playfair: 'Playfair Display', serif;
+}

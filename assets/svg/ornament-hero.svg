@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Центральный крест/розетка -->
+  <g transform="translate(120,30)">
+    <!-- Горизонтальная линия -->
+    <line x1="-100" y1="0" x2="-18" y2="0" stroke="#b8860b" stroke-width="0.8" opacity="0.7"/>
+    <line x1="18" y1="0" x2="100" y2="0" stroke="#b8860b" stroke-width="0.8" opacity="0.7"/>
+    <!-- Вертикальная линия -->
+    <line x1="0" y1="-20" x2="0" y2="20" stroke="#b8860b" stroke-width="0.8" opacity="0.5"/>
+    <!-- Центральный ромб -->
+    <polygon points="0,-12 8,0 0,12 -8,0" fill="none" stroke="#d4a843" stroke-width="1" opacity="0.9"/>
+    <circle cx="0" cy="0" r="4" fill="#d4a843" opacity="0.8"/>
+    <!-- Малые ромбы на концах -->
+    <polygon points="-100,-4 -92,0 -100,4 -108,0" fill="none" stroke="#b8860b" stroke-width="0.8" opacity="0.6"/>
+    <polygon points="100,-4 108,0 100,4 92,0" fill="none" stroke="#b8860b" stroke-width="0.8" opacity="0.6"/>
+    <!-- Тевтонские кресты по бокам -->
+    <g transform="translate(-56,0)" opacity="0.6">
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#b8860b" stroke-width="1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#b8860b" stroke-width="1"/>
+      <rect x="-3" y="-3" width="6" height="6" fill="none" stroke="#b8860b" stroke-width="0.5"/>
+    </g>
+    <g transform="translate(56,0)" opacity="0.6">
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#b8860b" stroke-width="1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#b8860b" stroke-width="1"/>
+      <rect x="-3" y="-3" width="6" height="6" fill="none" stroke="#b8860b" stroke-width="0.5"/>
+    </g>
+    <!-- Точки-акценты -->
+    <circle cx="-78" cy="0" r="1.5" fill="#b8860b" opacity="0.7"/>
+    <circle cx="78" cy="0" r="1.5" fill="#b8860b" opacity="0.7"/>
+    <circle cx="-34" cy="0" r="1" fill="#d4a843" opacity="0.5"/>
+    <circle cx="34" cy="0" r="1" fill="#d4a843" opacity="0.5"/>
+  </g>
+</svg>

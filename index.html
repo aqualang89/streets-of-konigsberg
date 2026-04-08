@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="История улиц Калининграда — путешествие в прошлое города, который раньше носил имя Кёнигсберг. Истории улиц, их прусские названия и судьбы.">
+  <meta name="theme-color" content="#1a1208">
+
+  <title>История улиц Калининграда | Königsberg</title>
+
+  <!-- Шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================
+       НАВИГАЦИЯ
+       ======================== -->
+  <nav class="site-nav" role="navigation" aria-label="Основная навигация">
+    <a class="nav-logo" href="index.html" aria-label="На главную">
+      Königsberg
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-link active" href="index.html">Главная</a></li>
+      <li><a class="nav-link" href="#streets">Улицы</a></li>
+      <li><a class="nav-link" href="#about">О проекте</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ========================
+       HERO-СЕКЦИЯ
+       ======================== -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+
+    <!-- Слои фона -->
+    <div class="hero-bg parallax-slow"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-dust parallax-medium"></div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-content">
+
+      <!-- SVG-орнамент -->
+      <img
+        class="hero-ornament-top ornament-float"
+        src="assets/svg/ornament-hero.svg"
+        alt=""
+        aria-hidden="true"
+        width="200"
+        height="50"
+      >
+
+      <!-- Латинский подзаголовок -->
+      <span class="hero-title-latin">Königsberg · Anno Domini · MCCV</span>
+
+      <!-- Главный заголовок -->
+      <h1 class="hero-title" id="hero-title">
+        История улиц<br>Калининграда
+      </h1>
+
+      <!-- Разделитель -->
+      <span class="hero-divider" aria-hidden="true"></span>
+
+      <!-- Подзаголовок -->
+      <p class="hero-subtitle">
+        Каждая улица — это слой времени. Под современным асфальтом
+        дремлет мостовая Кёнигсберга, а в названиях домов живут
+        тени тех, кто ходил здесь семь веков назад.
+      </p>
+
+      <!-- CTA -->
+      <a class="hero-cta" href="#streets">
+        Открыть карту улиц
+      </a>
+
+    </div>
+
+    <!-- Индикатор скролла -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Листать</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ========================
+       ЦИТАТА
+       ======================== -->
+  <section class="quote-section reveal" aria-label="Историческая цитата">
+    <div class="container">
+      <blockquote>
+        <p class="quote-text">
+          Кёнигсберг — город, который умер и воскрес с другим именем.
+          Но камни помнят всё.
+        </p>
+        <footer class="quote-author">— Из воспоминаний жителя</footer>
+      </blockquote>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       О ПРОЕКТЕ
+       ======================== -->
+  <section class="about-section" id="about" aria-labelledby="about-title">
+    <div class="container">
+
+      <!-- Орнамент и заголовок -->
+      <div class="reveal">
+        <div class="section-ornament">
+          <span class="ornament-line"></span>
+          <span class="ornament-center" aria-hidden="true">✦</span>
+          <span class="ornament-line"></span>
+        </div>
+        <h2 class="section-title" id="about-title">О проекте</h2>
+        <p class="section-subtitle">Зачем мы это делаем и что ищем</p>
+      </div>
+
+      <!-- Двухколоночный блок -->
+      <div class="about-inner">
+
+        <div class="about-text reveal-left reveal-delay-1">
+          <p>
+            Калининград — единственный российский город, выросший на руинах
+            другого, <em>немецкого</em> Кёнигсберга. Два мира в одном пространстве:
+            готические кирхи и советские пятиэтажки, брусчатка прусских улиц
+            и асфальт послевоенных проспектов.
+          </p>
+          <p>
+            Этот проект — попытка восстановить связь времён. Мы рассказываем
+            историю каждой улицы: как она называлась при прусских королях,
+            что здесь происходило, кто по ней ходил. И смотрим на город
+            глазами двух эпох сразу.
+          </p>
+          <p>
+            Истории выходят в формате видео на Рутубе — с архивными фотографиями,
+            старыми картами и живым рассказом. Здесь можно читать, там — смотреть.
+          </p>
+        </div>
+
+        <!-- Вертикальный разделитель -->
+        <div class="about-divider-v" aria-hidden="true"></div>
+
+        <!-- Факты -->
+        <ul class="about-facts reveal-right reveal-delay-2" aria-label="Факты о проекте">
+
+          <li class="about-fact">
+            <span class="fact-icon" aria-hidden="true">⚔</span>
+            <p class="fact-text">
+              Кёнигсберг основан в <strong>1255 году</strong> Тевтонским орденом.
+              С тех пор его улицы сменили несколько имён.
+            </p>
+          </li>
+
+          <li class="about-fact">
+            <span class="fact-icon" aria-hidden="true">🏰</span>
+            <p class="fact-text">
+              В 1946 году город переименован в Калининград.
+              Многие улицы получили <strong>новые советские названия</strong>,
+              навсегда вытеснив прусскую топонимику.
+            </p>
+          </li>
+
+          <li class="about-fact">
+            <span class="fact-icon" aria-hidden="true">📜</span>
+            <p class="fact-text">
+              Проект основан на архивных материалах, старых картах
+              и <strong>документах прусской эпохи</strong>.
+              Каждая история подтверждена источниками.
+            </p>
+          </li>
+
+          <li class="about-fact">
+            <span class="fact-icon" aria-hidden="true">▶</span>
+            <p class="fact-text">
+              Видео выходят на <strong>Рутубе</strong>.
+              Текстовые материалы — на этом сайте.
+              Оба формата дополняют друг друга.
+            </p>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       СЕКЦИЯ УЛИЦ
+       ======================== -->
+  <section class="streets-section" id="streets" aria-labelledby="streets-title">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-ornament">
+          <span class="ornament-line"></span>
+          <span class="ornament-center" aria-hidden="true">✦</span>
+          <span class="ornament-line"></span>
+        </div>
+        <h2 class="section-title" id="streets-title">Улицы Кёнигсберга</h2>
+        <p class="section-subtitle">Каждая улица — отдельная история</p>
+      </div>
+
+      <!-- Сетка карточек -->
+      <div class="streets-grid">
+
+        <!-- Карточка 1: готовая -->
+        <a
+          class="street-card reveal reveal-delay-1"
+          href="streets/leninsky-prospekt.html"
+          aria-label="Ленинский проспект — история улицы"
+        >
+          <div class="card-inner">
+            <span class="card-year">С 1255 года</span>
+            <h3 class="card-title-modern">Ленинский проспект</h3>
+            <p class="card-title-historic">Lange Reihe · Steindamm</p>
+            <div class="card-divider" aria-hidden="true"></div>
+            <p class="card-desc">
+              Главная артерия города. Здесь проходили прусские торговые процессии,
+              стояли средневековые купеческие дома и звучал орган кирхи
+              Святого Николая.
+            </p>
+            <span class="card-cta">
+              Читать историю
+              <span class="card-cta-arrow" aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Карточка 2: скоро -->
+        <div
+          class="street-card reveal reveal-delay-2"
+          role="article"
+          aria-label="Улица Чернышевского — скоро"
+        >
+          <span class="card-soon">Скоро</span>
+          <div class="card-inner">
+            <span class="card-year">С XIII века</span>
+            <h3 class="card-title-modern">ул. Чернышевского</h3>
+            <p class="card-title-historic">Kneiphöfsche Langgasse</p>
+            <div class="card-divider" aria-hidden="true"></div>
+            <p class="card-desc">
+              Длинная улица Кнайпхофа — острова посреди Преголи,
+              где находился исторический центр Кёнигсберга.
+              Здесь жил философ Иммануил Кант.
+            </p>
+            <span class="card-cta" aria-hidden="true">
+              В разработке
+              <span class="card-cta-arrow">…</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Карточка 3: скоро -->
+        <div
+          class="street-card reveal reveal-delay-3"
+          role="article"
+          aria-label="Улица Баранова — скоро"
+        >
+          <span class="card-soon">Скоро</span>
+          <div class="card-inner">
+            <span class="card-year">XIV–XX вв.</span>
+            <h3 class="card-title-modern">ул. Баранова</h3>
+            <p class="card-title-historic">Tragheimer Kirchenstraße</p>
+            <div class="card-divider" aria-hidden="true"></div>
+            <p class="card-desc">
+              Улица Трагхаймской кирхи — одного из красивейших
+              лютеранских храмов Кёнигсберга постройки XVII века.
+            </p>
+            <span class="card-cta" aria-hidden="true">
+              В разработке
+              <span class="card-cta-arrow">…</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       ФУТЕР
+       ======================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+
+      <div>
+        <div class="footer-logo" aria-label="Königsberg">Königsberg</div>
+        <span class="footer-logo-sub">История улиц Калининграда</span>
+      </div>
+
+      <nav aria-label="Навигация в футере">
+        <ul class="footer-nav">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="#streets">Улицы</a></li>
+          <li><a href="#about">О проекте</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-copy">
+        <p>© 2024–2025</p>
+        <p>История улиц Калининграда</p>
+        <p>Все права защищены</p>
+      </div>
+
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+  </footer>
+
+
+  <!-- JS -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

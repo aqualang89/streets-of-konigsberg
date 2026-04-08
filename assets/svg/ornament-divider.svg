@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 24" fill="none">
+  <g transform="translate(160,12)">
+    <!-- Основные линии -->
+    <line x1="-150" y1="0" x2="-20" y2="0" stroke="#7a5c20" stroke-width="0.7"/>
+    <line x1="20" y1="0" x2="150" y2="0" stroke="#7a5c20" stroke-width="0.7"/>
+    <!-- Верхние линии (двойная рамка) -->
+    <line x1="-130" y1="-4" x2="-20" y2="-4" stroke="#4a3518" stroke-width="0.4"/>
+    <line x1="20" y1="-4" x2="130" y2="-4" stroke="#4a3518" stroke-width="0.4"/>
+    <!-- Центральный элемент — прусский орёл-мотив (упрощён до геометрии) -->
+    <polygon points="0,-10 6,-3 10,0 6,3 0,10 -6,3 -10,0 -6,-3"
+             fill="none" stroke="#b8860b" stroke-width="1" opacity="0.9"/>
+    <polygon points="0,-5 3,-2 5,0 3,2 0,5 -3,2 -5,0 -3,-2"
+             fill="#b8860b" opacity="0.4"/>
+    <circle cx="0" cy="0" r="2" fill="#d4a843" opacity="0.9"/>
+    <!-- Мелкие акценты -->
+    <circle cx="-18" cy="0" r="1.2" fill="#7a5c20" opacity="0.8"/>
+    <circle cx="18" cy="0" r="1.2" fill="#7a5c20" opacity="0.8"/>
+    <line x1="-15" y1="-3" x2="-15" y2="3" stroke="#4a3518" stroke-width="0.5"/>
+    <line x1="15" y1="-3" x2="15" y2="3" stroke="#4a3518" stroke-width="0.5"/>
+    <!-- Угловые маркеры -->
+    <circle cx="-150" cy="0" r="1.5" fill="#4a3518" opacity="0.7"/>
+    <circle cx="150" cy="0" r="1.5" fill="#4a3518" opacity="0.7"/>
+  </g>
+</svg>
