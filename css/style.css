@@ -352,7 +352,7 @@ body {
 
 .hero-scroll-hint {
   position: absolute;
-  bottom: 40px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -633,6 +633,16 @@ body {
   margin-bottom: 16px;
 }
 
+.card-title-transcription {
+  font-family: var(--font-fell);
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+}
+
 .card-divider {
   width: 40px;
   height: 1px;
@@ -880,6 +890,16 @@ body {
   font-size: clamp(1rem, 2.5vw, 1.4rem);
   color: var(--color-sepia);
   margin-bottom: 12px;
+}
+
+.street-name-transcription {
+  font-family: var(--font-fell);
+  font-style: italic;
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  opacity: 0.7;
 }
 
 .street-dates {
