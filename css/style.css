@@ -24,6 +24,7 @@
 
   /* Шрифты (из fonts.css) */
   --font-gothic:      'UnifrakturMaguntia', cursive;
+  --font-heading:     'Cormorant Garamond', 'Playfair Display', serif;
   --font-cinzel-deco: 'Cinzel Decorative', cursive;
   --font-cinzel:      'Cinzel', serif;
   --font-fell:        'IM Fell English', serif;
@@ -244,8 +245,9 @@ body {
 }
 
 .hero-title {
-  font-family: var(--font-gothic);
+  font-family: var(--font-heading);
   font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 700;
   color: var(--color-gold-bright);
   line-height: 1.1;
   text-shadow:
@@ -311,6 +313,7 @@ body {
 .hero-cta {
   display: inline-block;
   padding: 14px 42px;
+  margin-bottom: 60px;
   font-family: var(--font-cinzel);
   font-size: 0.75rem;
   letter-spacing: 3px;
@@ -352,7 +355,7 @@ body {
 
 .hero-scroll-hint {
   position: absolute;
-  bottom: 16px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -877,8 +880,9 @@ body {
 .street-breadcrumb span { margin: 0 10px; opacity: 0.5; }
 
 .street-name-modern {
-  font-family: var(--font-cinzel-deco);
-  font-size: clamp(1.6rem, 5vw, 3rem);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
   color: var(--color-parchment);
   margin-bottom: 10px;
   text-shadow: 0 0 30px rgba(212, 168, 67, 0.3);

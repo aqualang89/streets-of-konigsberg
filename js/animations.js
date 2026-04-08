@@ -40,20 +40,52 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroContent = document.querySelector('.hero-content');
 
   if (heroDust || heroBg) {
-    const onParallax = () => {
-      const scrollY = window.scrollY;
+    // Плавный параллакс через requestAnimationFrame
+    let ticking = false;
+    let lastScrollY = 0;
+    let currentDust = 0;
+    let currentBg = 0;
+    let currentContent = 0;
+    let currentOpacity = 1;
+
+    const lerp = (current, target, ease) => current + (target - current) * ease;
+
+    const updateParallax = () => {
+      const targetDust = lastScrollY * 0.08;
+      const targetBg = lastScrollY * 0.04;
+      const targetContent = lastScrollY * 0.12;
+      const targetOpacity = Math.max(0, 1 - lastScrollY / 600);
+
+      currentDust = lerp(currentDust, targetDust, 0.08);
+      currentBg = lerp(currentBg, targetBg, 0.08);
+      currentContent = lerp(currentContent, targetContent, 0.08);
+      currentOpacity = lerp(currentOpacity, targetOpacity, 0.08);
 
       if (heroDust) {
-        heroDust.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroDust.style.transform = `translateY(${currentDust}px)`;
       }
-
       if (heroBg) {
-        heroBg.style.transform = `translateY(${scrollY * 0.08}px)`;
+        heroBg.style.transform = `translateY(${currentBg}px)`;
+      }
+      if (heroContent) {
+        heroContent.style.transform = `translateY(${currentContent}px)`;
+        heroContent.style.opacity = currentOpacity;
       }
 
-      if (heroContent) {
-        heroContent.style.transform = `translateY(${scrollY * 0.25}px)`;
-        heroContent.style.opacity = Math.max(0, 1 - scrollY / 500);
+      // Продолжаем анимацию пока есть разница
+      if (Math.abs(currentDust - targetDust) > 0.1 ||
+          Math.abs(currentContent - targetContent) > 0.1) {
+        requestAnimationFrame(updateParallax);
+      } else {
+        ticking = false;
+      }
+    };
+
+    const onParallax = () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
       }
     };
 
@@ -126,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const goldElements = document.querySelectorAll('.ornament-center, .fact-icon');
 
-  goldElements.forEach((el, i) => {
+  goldElements.forEach((el) => {
     // Случайная задержка для каждого элемента
     const delay = Math.random() * 3;
     el.style.animationDelay = `${delay}s`;

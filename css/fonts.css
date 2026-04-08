@@ -6,8 +6,11 @@
 
 /* Переменные шрифтов */
 :root {
-  /* Готический декоративный — для заголовков Hero */
+  /* Готический — ТОЛЬКО для латиницы (Königsberg, Anno Domini) */
   --font-gothic: 'UnifrakturMaguntia', cursive;
+
+  /* Антикварный с кириллицей — для крупных кириллических заголовков */
+  --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
 
   /* Античный декоративный — для заголовков секций */
   --font-cinzel-deco: 'Cinzel Decorative', cursive;
