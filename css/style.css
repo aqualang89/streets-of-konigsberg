@@ -246,7 +246,8 @@ body {
 }
 
 .hero-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-fell);
+  font-style: italic;
   font-size: clamp(2.6rem, 7vw, 5.2rem);
   font-weight: 700;
   color: var(--color-gold-bright);
