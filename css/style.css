@@ -423,7 +423,8 @@ body {
 /* === ЗАГОЛОВКИ СЕКЦИЙ === */
 
 .section-title {
-  font-family: var(--font-cinzel-deco);
+  font-family: var(--font-fell);
+  font-style: italic;
   font-size: clamp(1.3rem, 3.5vw, 2rem);
   color: var(--color-gold-light);
   text-align: center;
