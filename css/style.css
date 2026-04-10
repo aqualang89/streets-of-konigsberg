@@ -121,6 +121,12 @@ body {
   border-bottom-color: var(--color-border-gold);
 }
 
+/* Первая буква K — читаемый готический стиль */
+.gothic-k {
+  font-family: var(--font-cinzel-deco);
+  font-size: 1.1em;
+}
+
 .nav-logo {
   font-family: var(--font-gothic);
   font-size: 1.4rem;
