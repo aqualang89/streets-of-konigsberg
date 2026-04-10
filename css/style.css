@@ -745,15 +745,7 @@ body {
 }
 
 .quote-text::before {
-  content: '\201C';
-  font-family: var(--font-cinzel-deco);
-  font-size: 4rem;
-  color: var(--color-sepia);
-  line-height: 0;
-  position: absolute;
-  top: 16px;
-  left: -30px;
-  opacity: 0.6;
+  display: none;
 }
 
 .quote-author {
