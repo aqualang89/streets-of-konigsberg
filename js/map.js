@@ -220,12 +220,21 @@
       allSegments.push(...segments);
 
       const marker = L.marker(center, { icon: makeIcon() }).addTo(map);
-      marker.bindPopup(popupHtml(street), { maxWidth: 300 });
+      const isMobile = window.innerWidth < 768;
+      marker.bindPopup(popupHtml(street), {
+        maxWidth: isMobile ? 240 : 300,
+        autoPanPaddingTopLeft: [20, 80],
+        autoPanPaddingBottomRight: [20, 100]
+      });
 
-      marker.on('mouseover', () => lines.forEach(l => l.setStyle({ opacity: 0.75 })));
-      marker.on('mouseout',  () => lines.forEach(l => l.setStyle({ opacity: 0 })));
-      marker.on('popupopen',  () => lines.forEach(l => l.setStyle({ opacity: 0.85 })));
-      marker.on('popupclose', () => lines.forEach(l => l.setStyle({ opacity: 0 })));
+      // На десктопе — как было. На мобиле — толще и ярче, чтобы видно из-под попапа
+      const popupOpacity = isMobile ? 0.95 : 0.85;
+      const popupWeight  = isMobile ? 12   : 8;
+
+      marker.on('mouseover', () => lines.forEach(l => l.setStyle({ opacity: 0.75, weight: 8 })));
+      marker.on('mouseout',  () => lines.forEach(l => l.setStyle({ opacity: 0, weight: 8 })));
+      marker.on('popupopen',  () => lines.forEach(l => l.setStyle({ opacity: popupOpacity, weight: popupWeight })));
+      marker.on('popupclose', () => lines.forEach(l => l.setStyle({ opacity: 0, weight: 8 })));
 
       plotted++;
     }

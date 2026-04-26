@@ -1110,12 +1110,18 @@ body {
 }
 
 .map-intro-title {
-  font-family: var(--font-cinzel-deco);
-  color: var(--color-parchment);
-  font-size: clamp(2rem, 4vw, 3rem);
-  letter-spacing: 0.08em;
+  font-family: var(--font-fell);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-gold-bright);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: 2px;
   margin: 0 0 0.6rem;
-  text-shadow: 0 2px 12px rgba(184, 134, 11, 0.3);
+  text-shadow:
+    0 0 40px rgba(212, 168, 67, 0.6),
+    0 0 80px rgba(212, 168, 67, 0.25),
+    2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .map-intro-text {
@@ -1301,4 +1307,8 @@ body {
     min-height: 420px;
   }
   .map-intro { padding-top: 7rem; }
+  .leaflet-popup-content { width: 220px !important; }
+  .map-popup { padding: 12px; }
+  .map-popup-name { font-size: 1rem; }
+  .map-popup-desc { font-size: 0.82rem; }
 }
