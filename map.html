@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Карта Калининграда с улицами, чья история уходит в прусский Кёнигсберг.">
+  <title>Карта &mdash; История улиц Калининграда</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="map-page">
+
+  <!-- НАВИГАЦИЯ -->
+  <nav class="site-nav" role="navigation" aria-label="Основная навигация">
+    <a class="nav-logo" href="index.html" aria-label="На главную">Königsberg</a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="index.html">Главная</a></li>
+      <li><a class="nav-link" href="index.html#streets">Улицы</a></li>
+      <li><a class="nav-link active" href="map.html">Карта</a></li>
+      <li><a class="nav-link" href="index.html#about">О проекте</a></li>
+    </ul>
+  </nav>
+
+  <!-- ВВОДНАЯ ПОЛОСКА -->
+  <section class="map-intro">
+    <div class="map-intro-inner">
+      <span class="map-intro-latin">Civitas Regiomontana &middot; Tabula</span>
+      <h1 class="map-intro-title">Карта улиц</h1>
+      <span class="hero-divider" aria-hidden="true"></span>
+      <p class="map-intro-text">
+        Наведите курсор на маркер &mdash; улица подсветится на карте.
+        Кликните, чтобы открыть её историю.
+      </p>
+      <p class="map-intro-status" id="map-status">Загрузка карты&hellip;</p>
+    </div>
+  </section>
+
+  <!-- КАРТА -->
+  <main class="map-section">
+    <div id="map" class="map-container" aria-label="Карта Калининграда"></div>
+  </main>
+
+  <!-- ФУТЕР -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-latin">&laquo;Verba volant, scripta manent&raquo;</p>
+      <p class="footer-copy">&copy; 2026 &mdash; История улиц Калининграда</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>
