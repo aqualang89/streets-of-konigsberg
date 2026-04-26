@@ -5,7 +5,12 @@
 
   const STREETS_JSON = 'data/streets.json';
   const KALININGRAD = [54.7104, 20.4522];
-  const OVERPASS_URL = 'https://overpass-api.de/api/interpreter';
+  // Несколько Overpass-серверов с CORS — если один не отвечает, пробуем следующий
+  const OVERPASS_URLS = [
+    'https://overpass.kumi.systems/api/interpreter',
+    'https://overpass.private.coffee/api/interpreter',
+    'https://overpass-api.de/api/interpreter'
+  ];
 
   const statusEl = document.getElementById('map-status');
   function setStatus(text) { if (statusEl) statusEl.textContent = text; }
@@ -46,13 +51,22 @@
   }
 
   async function runOverpass(query) {
-    const res = await fetch(OVERPASS_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: 'data=' + encodeURIComponent(query)
-    });
-    if (!res.ok) throw new Error('Overpass HTTP ' + res.status);
-    return res.json();
+    let lastErr;
+    for (const url of OVERPASS_URLS) {
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'data=' + encodeURIComponent(query)
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      } catch (err) {
+        lastErr = err;
+        console.warn('[map] Overpass ' + url + ' не отвечает, пробую следующий');
+      }
+    }
+    throw lastErr || new Error('Все Overpass-серверы недоступны');
   }
 
   async function fetchStreetGeometry(streetName) {
