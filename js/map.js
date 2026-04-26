@@ -58,54 +58,80 @@
   async function fetchStreetGeometry(streetName) {
     const cleanName = cleanStreetName(streetName);
 
-    // Через relation города (надёжно)
-    const queryArea = `[out:json][timeout:25];
-      relation["name"="Калининград"]["place"="city"];
-      map_to_area->.kgd;
-      way["highway"]["name"~"${cleanName}",i](area.kgd);
+    // Запрос ищет улицу по name, name:ru и alt_name — на случай разных вариантов в OSM
+    const buildUnion = (areaOrBbox) => `
+      (
+        way["highway"]["name"~"${cleanName}",i]${areaOrBbox};
+        way["highway"]["name:ru"~"${cleanName}",i]${areaOrBbox};
+        way["highway"]["alt_name"~"${cleanName}",i]${areaOrBbox};
+      );
       out tags geom;`;
 
-    // Fallback: узкий bbox самого города
+    const queryArea = `[out:json][timeout:25];
+      relation["name"="Калининград"]["place"="city"];
+      map_to_area->.kgd;` + buildUnion('(area.kgd)');
+
     const KGD_NARROW_BBOX = '54.65,20.32,54.77,20.59';
-    const queryBbox = `[out:json][timeout:25];
-      way["highway"]["name"~"${cleanName}",i](${KGD_NARROW_BBOX});
-      out tags geom;`;
+    const queryBbox = `[out:json][timeout:25];` + buildUnion(`(${KGD_NARROW_BBOX})`);
 
     let data = null;
     try {
       data = await runOverpass(queryArea);
+      console.log(`[map] Поиск "${streetName}" через area:`, data.elements?.length || 0, 'результатов');
       if (!data.elements || !data.elements.length) {
         data = await runOverpass(queryBbox);
+        console.log(`[map] Fallback через bbox:`, data.elements?.length || 0, 'результатов');
       }
     } catch (err) {
-      console.error('Overpass error for', streetName, err);
+      console.error('[map] Overpass error for', streetName, err);
       try { data = await runOverpass(queryBbox); } catch (e) { return null; }
     }
 
-    if (!data || !data.elements || !data.elements.length) return null;
+    if (!data || !data.elements || !data.elements.length) {
+      console.warn(`[map] "${streetName}" не найдена в OSM`);
+      return null;
+    }
 
     const ways = data.elements.filter(el => el.type === 'way' && el.geometry);
 
-    // Точное совпадение названия — отсекает похожие улицы
+    // Логируем что именно нашлось — для диагностики
+    const foundNames = [...new Set(ways.map(w => w.tags && w.tags.name).filter(Boolean))];
+    console.log(`[map] Найдены варианты имён:`, foundNames);
+
+    // Точное совпадение — приоритет
     const expected = [
       'улица ' + cleanName,
       'ул. ' + cleanName,
       'проспект ' + cleanName,
       'просп. ' + cleanName,
-      cleanName
+      cleanName,
+      // На случай если в JSON дано "Ленинский проспект", а в OSM "Ленинский проспект"
+      streetName,
+      streetName.replace(/проспект/i, 'просп.'),
+      streetName.replace(/просп\./i, 'проспект')
     ].map(s => s.toLowerCase());
 
     let matched = ways.filter(w => {
       const n = (w.tags && w.tags.name || '').toLowerCase();
-      return expected.includes(n);
+      const nRu = (w.tags && w.tags['name:ru'] || '').toLowerCase();
+      return expected.includes(n) || expected.includes(nRu);
     });
 
+    // Fallback: содержит cleanName как отдельное слово
     if (!matched.length) {
       const re = new RegExp('(^|\\s)' + cleanName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($|\\s)', 'i');
-      matched = ways.filter(w => re.test(w.tags && w.tags.name || ''));
+      matched = ways.filter(w => {
+        const n = w.tags && w.tags.name || '';
+        const nRu = w.tags && w.tags['name:ru'] || '';
+        return re.test(n) || re.test(nRu);
+      });
     }
 
-    if (!matched.length) return null;
+    if (!matched.length) {
+      console.warn(`[map] "${streetName}" найдена в OSM, но ни один вариант не подходит. Имена:`, foundNames);
+      return null;
+    }
+
     return matched.map(w => w.geometry.map(g => [g.lat, g.lon]));
   }
 
