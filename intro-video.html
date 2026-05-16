@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интро — История улиц Калининграда</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg:          #1a1208;
+      --color-bg-dark:     #0f0a04;
+      --color-gold-bright: #f0c84a;
+      --color-gold:        #b8860b;
+      --color-gold-light:  #d4a843;
+      --color-text:        #d4c090;
+      --color-sepia:       #8b6914;
+      --font-fell:         'IM Fell English', serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* --- Контейнер 9:16 --- */
+    .frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 100vh;
+      width: calc(100vh * 9 / 16);
+      max-width: 100vw;
+      max-height: calc(100vw * 16 / 9);
+      overflow: hidden;
+    }
+
+    /* === ФОН — идентичен hero сайта === */
+    .bg-base {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(90, 55, 10, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(139, 37, 0, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 80% 20%, rgba(100, 70, 10, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #0a0602 0%, #1a1208 40%, #120d06 100%);
+      z-index: 0;
+    }
+
+    /* Пылевые точки */
+    .bg-dust {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        radial-gradient(1px 1px at 15% 25%, rgba(255, 210, 120, 0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 60%, rgba(255, 210, 120, 0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 30%, rgba(255, 210, 120, 0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 70%, rgba(255, 210, 120, 0.25) 0%, transparent 100%),
+        radial-gradient(2px 2px at 10% 80%, rgba(255, 200, 100, 0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 15%, rgba(255, 200, 100, 0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 90%, rgba(255, 200, 100, 0.2) 0%, transparent 100%),
+        radial-gradient(2px 2px at 70% 50%, rgba(255, 200, 100, 0.15) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Горизонтальные линии — бумага */
+    .bg-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 35px,
+          rgba(180, 130, 40, 0.04) 35px,
+          rgba(180, 130, 40, 0.04) 36px
+        );
+      pointer-events: none;
+    }
+
+    /* Виньетка */
+    .bg-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(
+        ellipse 90% 90% at 50% 50%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.65) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* === КОНТЕНТ === */
+    .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 3%;
+    }
+
+    /* === ОСНОВНОЙ ЗАГОЛОВОК === */
+    .title {
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: calc(100vh * 9 / 16 * 0.12);
+      font-weight: 700;
+      color: var(--color-gold-bright);
+      line-height: 1.1;
+      letter-spacing: 2px;
+      opacity: 0;
+      text-shadow: none;
+      max-width: 95%;
+    }
+
+    /* Свечение на фон от букв */
+    .title-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      width: 140%;
+      height: 250%;
+      background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.15) 0%, transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* === НАЗВАНИЕ ВИДЕО (улица) — x1.5 === */
+    .video-title {
+      font-family: var(--font-fell);
+      font-style: italic;
+      font-size: calc(100vh * 9 / 16 * 0.057);
+      font-weight: 400;
+      color: var(--color-gold-light);
+      letter-spacing: 1px;
+      margin-top: 4%;
+      opacity: 0;
+      text-shadow: none;
+    }
+
+    /* Свечение от названия видео */
+    .video-title-glow {
+      position: absolute;
+      top: 62%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.08) 0%, transparent 55%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* --- Кнопка перезапуска --- */
+    .replay-btn {
+      position: absolute;
+      bottom: 3%;
+      right: 3%;
+      z-index: 20;
+      background: rgba(184,134,11,0.15);
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold);
+      font-family: var(--font-fell);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      cursor: pointer;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.5s, background 0.2s;
+    }
+    .replay-btn:hover { background: rgba(184,134,11,0.3); }
+    .replay-btn.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div class="frame" id="frame">
+  <!-- Фон идентичен сайту -->
+  <div class="bg-base"></div>
+  <div class="bg-dust"></div>
+  <div class="bg-lines"></div>
+  <div class="bg-vignette"></div>
+
+  <!-- Свечение от букв на фон -->
+  <div class="title-glow" id="titleGlow"></div>
+  <div class="video-title-glow" id="videoTitleGlow"></div>
+
+  <div class="content">
+    <div class="title" id="title">История улиц<br>Калининграда</div>
+    <div class="video-title" id="videoTitle">Ленинский проспект</div>
+  </div>
+
+  <button class="replay-btn" id="replayBtn" onclick="location.reload()">&#8635; Ещё раз</button>
+</div>
+
+<script>
+(() => {
+  const title = document.getElementById('title');
+  const titleGlow = document.getElementById('titleGlow');
+  const videoTitle = document.getElementById('videoTitle');
+  const videoTitleGlow = document.getElementById('videoTitleGlow');
+  const replayBtn = document.getElementById('replayBtn');
+
+  // =============================================
+  //  ЗВУКОВОЙ ДВИЖОК (Web Audio API)
+  // =============================================
+  let audioCtx;
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+  }
+
+  // --- Звук неоновой лампы (по анализу референса) ---
+  // Щелчок → нарастающее гудение → звенящие клацанья (3 шт, нарастают) → финальное включение
+  function playNeonIgnition(startDelay) {
+    const ctx = getAudioCtx();
+    const t = ctx.currentTime + (startDelay || 0);
+    const sr = ctx.sampleRate;
+
+    // Звенящее клацанье — резкий удар + резонанс на 100/200/300Hz
+    function clack(time, intensity) {
+      // Резкий щелчок — шумовой импульс
+      const len = Math.floor(sr * 0.008);
+      const buf = ctx.createBuffer(1, len, sr);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.05)) * intensity;
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const g = ctx.createGain();
+      g.gain.value = 0.4;
+      src.connect(g).connect(ctx.destination);
+      src.start(time);
+
+      // Звенящий резонанс после щелчка — именно это даёт "клацанье"
+      // Короткий burst из 100+200+300Hz с быстрым затуханием
+      [100, 200, 300].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        const g = ctx.createGain();
+        const vol = intensity * [0.15, 0.10, 0.08][idx];
+        g.gain.setValueAtTime(vol, time);
+        g.gain.exponentialRampToValueAtTime(0.001, time + 0.08 + Math.random() * 0.03);
+        osc.connect(g).connect(ctx.destination);
+        osc.start(time);
+        osc.stop(time + 0.12);
+      });
+
+      // Высокочастотный "звон" — металлический призвук
+      const ringOsc = ctx.createOscillator();
+      ringOsc.type = 'sine';
+      ringOsc.frequency.value = 2500 + Math.random() * 500;
+      const ringGain = ctx.createGain();
+      ringGain.gain.setValueAtTime(intensity * 0.03, time);
+      ringGain.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
+      ringOsc.connect(ringGain).connect(ctx.destination);
+      ringOsc.start(time);
+      ringOsc.stop(time + 0.06);
+    }
+
+    // === 1) Начальный щелчок (0ms) — тихий ===
+    clack(t + 0.0, 0.6);
+
+    // === 2) Нарастающее гудение (50ms — 1700ms) ===
+    // 100Hz + 200Hz + 300Hz — по данным спектрального анализа
+    const humDuration = 3.0;
+
+    const humOsc100 = ctx.createOscillator();
+    humOsc100.type = 'sine';
+    humOsc100.frequency.value = 100;
+
+    const humOsc200 = ctx.createOscillator();
+    humOsc200.type = 'sine';
+    humOsc200.frequency.value = 200;
+
+    const humOsc300 = ctx.createOscillator();
+    humOsc300.type = 'sine';
+    humOsc300.frequency.value = 300;
+
+    const hg100 = ctx.createGain();
+    const hg200 = ctx.createGain();
+    const hg300 = ctx.createGain();
+
+    // 100Hz — основа, нарастает, потом стабильно
+    hg100.gain.setValueAtTime(0.01, t + 0.05);
+    hg100.gain.linearRampToValueAtTime(0.04, t + 0.5);
+    hg100.gain.linearRampToValueAtTime(0.06, t + 1.0);
+    hg100.gain.setValueAtTime(0.06, t + 1.7);
+    // Провалы при клацаньях
+    hg100.gain.linearRampToValueAtTime(0.02, t + 1.72);
+    hg100.gain.linearRampToValueAtTime(0.06, t + 1.8);
+    hg100.gain.setValueAtTime(0.06, t + 2.33);
+    hg100.gain.linearRampToValueAtTime(0.02, t + 2.35);
+    hg100.gain.linearRampToValueAtTime(0.07, t + 2.45);
+    // Нарастание к финальному включению
+    hg100.gain.setValueAtTime(0.07, t + 2.5);
+    hg100.gain.linearRampToValueAtTime(0.12, t + 2.6);
+    hg100.gain.setValueAtTime(0.12, t + 2.9);
+    hg100.gain.linearRampToValueAtTime(0.15, t + 2.95);
+    // Стабильное горение
+    hg100.gain.setValueAtTime(0.04, t + 3.2);
+    hg100.gain.linearRampToValueAtTime(0.025, t + 4.0);
+    hg100.gain.setValueAtTime(0.025, t + 9);
+    hg100.gain.linearRampToValueAtTime(0, t + 11);
+
+    // 200Hz — вторая гармоника
+    hg200.gain.setValueAtTime(0.005, t + 0.05);
+    hg200.gain.linearRampToValueAtTime(0.03, t + 1.0);
+    hg200.gain.setValueAtTime(0.03, t + 2.5);
+    hg200.gain.linearRampToValueAtTime(0.08, t + 2.6);
+    hg200.gain.setValueAtTime(0.08, t + 2.9);
+    hg200.gain.linearRampToValueAtTime(0.10, t + 2.95);
+    hg200.gain.setValueAtTime(0.03, t + 3.2);
+    hg200.gain.linearRampToValueAtTime(0.015, t + 4.0);
+    hg200.gain.setValueAtTime(0.015, t + 9);
+    hg200.gain.linearRampToValueAtTime(0, t + 11);
+
+    // 300Hz — третья гармоника, даёт "дребезг"
+    hg300.gain.setValueAtTime(0.003, t + 0.05);
+    hg300.gain.linearRampToValueAtTime(0.025, t + 1.0);
+    hg300.gain.setValueAtTime(0.025, t + 2.5);
+    hg300.gain.linearRampToValueAtTime(0.07, t + 2.6);
+    hg300.gain.setValueAtTime(0.07, t + 2.9);
+    hg300.gain.linearRampToValueAtTime(0.09, t + 2.95);
+    hg300.gain.setValueAtTime(0.02, t + 3.2);
+    hg300.gain.linearRampToValueAtTime(0.01, t + 4.0);
+    hg300.gain.setValueAtTime(0.01, t + 9);
+    hg300.gain.linearRampToValueAtTime(0, t + 11);
+
+    const humLp = ctx.createBiquadFilter();
+    humLp.type = 'lowpass';
+    humLp.frequency.value = 450;
+
+    humOsc100.connect(hg100).connect(humLp).connect(ctx.destination);
+    humOsc200.connect(hg200).connect(humLp);
+    humOsc300.connect(hg300).connect(humLp);
+
+    humOsc100.start(t + 0.05);
+    humOsc100.stop(t + 11);
+    humOsc200.start(t + 0.05);
+    humOsc200.stop(t + 11);
+    humOsc300.start(t + 0.05);
+    humOsc300.stop(t + 11);
+
+    // === 3) Звенящие клацанья — три штуки, нарастают ===
+    // По waveform: 1.72с (средний), 2.35с (серия), 2.53с (самый мощный), 2.93с (финал)
+    clack(t + 1.72, 0.5);   // первое клацанье
+    clack(t + 2.33, 0.6);   // второе
+    clack(t + 2.37, 0.65);  // быстрая серия
+    clack(t + 2.41, 0.7);
+    clack(t + 2.53, 0.9);   // третье — самое мощное
+    clack(t + 2.58, 0.85);
+    clack(t + 2.60, 0.95);
+    clack(t + 2.68, 0.5);   // отголосок
+    clack(t + 2.93, 1.0);   // финальное — зажглась!
+  }
+
+  // --- Звук включения второй надписи (мягче, короче) ---
+  function playNeonSmall(startDelay) {
+    const ctx = getAudioCtx();
+    const t = ctx.currentTime + (startDelay || 0);
+    const sr = ctx.sampleRate;
+
+    // Один мягкий клацк
+    function softClack(time, intensity) {
+      const len = Math.floor(sr * 0.006);
+      const buf = ctx.createBuffer(1, len, sr);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) {
+        d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.04)) * intensity;
+      }
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const g = ctx.createGain();
+      g.gain.value = 0.25;
+      src.connect(g).connect(ctx.destination);
+      src.start(time);
+
+      [100, 200, 300].forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        const og = ctx.createGain();
+        og.gain.setValueAtTime(intensity * [0.08, 0.05, 0.04][idx], time);
+        og.gain.exponentialRampToValueAtTime(0.001, time + 0.06);
+        osc.connect(og).connect(ctx.destination);
+        osc.start(time);
+        osc.stop(time + 0.08);
+      });
+    }
+
+    // Тихое гудение
+    const hum = ctx.createOscillator();
+    hum.type = 'sine';
+    hum.frequency.value = 100;
+    const hg = ctx.createGain();
+    hg.gain.setValueAtTime(0.01, t);
+    hg.gain.linearRampToValueAtTime(0.03, t + 0.3);
+    hg.gain.setValueAtTime(0.03, t + 0.5);
+    hg.gain.linearRampToValueAtTime(0.06, t + 0.7);
+    hg.gain.setValueAtTime(0.02, t + 1.0);
+    hg.gain.linearRampToValueAtTime(0.012, t + 2.0);
+    hg.gain.setValueAtTime(0.012, t + 8);
+    hg.gain.linearRampToValueAtTime(0, t + 10);
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass';
+    lp.frequency.value = 350;
+    hum.connect(hg).connect(lp).connect(ctx.destination);
+    hum.start(t);
+    hum.stop(t + 10);
+
+    // Клацанья — два
+    softClack(t + 0.3, 0.5);
+    softClack(t + 0.65, 0.8); // зажглась
+  }
+
+  // =============================================
+  //  НЕОНОВОЕ ВКЛЮЧЕНИЕ — визуал (плавнее, +1с)
+  // =============================================
+
+  const GLOW_ON = `
+    0 0 10px rgba(240, 200, 74, 0.8),
+    0 0 30px rgba(212, 168, 67, 0.6),
+    0 0 60px rgba(212, 168, 67, 0.3),
+    0 0 100px rgba(212, 168, 67, 0.15),
+    2px 2px 6px rgba(0, 0, 0, 0.8)
+  `;
+  const GLOW_DIM = `
+    0 0 4px rgba(240, 200, 74, 0.3),
+    2px 2px 6px rgba(0, 0, 0, 0.8)
+  `;
+  const GLOW_OFF = `2px 2px 6px rgba(0, 0, 0, 0.8)`;
+
+  const GLOW_SMALL_ON = `
+    0 0 8px rgba(212, 168, 67, 0.7),
+    0 0 25px rgba(212, 168, 67, 0.4),
+    0 0 50px rgba(212, 168, 67, 0.15)
+  `;
+
+  function setTitleState(on, brightness) {
+    if (on) {
+      title.style.opacity = brightness || 1;
+      title.style.color = '#f0c84a';
+      title.style.textShadow = GLOW_ON;
+      titleGlow.style.opacity = brightness || 1;
+    } else {
+      title.style.opacity = brightness || 0.12;
+      title.style.color = '#6b5030';
+      title.style.textShadow = brightness > 0.1 ? GLOW_DIM : GLOW_OFF;
+      titleGlow.style.opacity = 0;
+    }
+  }
+
+  // Визуальная вспышка — синхронизирована с клацаньями
+  function flash(brightness) {
+    setTitleState(true, brightness);
+    setTimeout(() => setTitleState(false, 0.06), 50 + Math.random() * 30);
+  }
+
+  // =============================================
+  //  ТАЙМЛАЙН — синхронизирован со звуком
+  //  Звук стартует в t=0.8с, значит визуал смещён на 0.8с
+  // =============================================
+
+  let audioStarted = false;
+  function ensureAudio() {
+    if (!audioStarted) {
+      audioStarted = true;
+      playNeonIgnition(0.8);
+    }
+  }
+  document.addEventListener('click', ensureAudio, { once: true });
+  document.addEventListener('keydown', ensureAudio, { once: true });
+  setTimeout(() => { try { ensureAudio(); } catch(e) {} }, 100);
+
+  const T = 800; // смещение звука
+
+  // 0ms: начальный щелчок — слабая вспышка
+  setTimeout(() => flash(0.3), T + 0);
+
+  // 50ms-1700ms: нарастающее гудение — заголовок медленно проступает
+  setTimeout(() => {
+    title.style.transition = 'opacity 1.5s ease-out, color 1.5s ease-out';
+    title.style.opacity = 0.15;
+    title.style.color = '#6b5030';
+    title.style.textShadow = GLOW_DIM;
+  }, T + 100);
+
+  // 1720ms: первое клацанье — вспышка средняя
+  setTimeout(() => flash(0.5), T + 1720);
+
+  // 2330-2410ms: серия клацаний — быстрые вспышки
+  setTimeout(() => flash(0.55), T + 2330);
+  setTimeout(() => flash(0.6),  T + 2370);
+  setTimeout(() => flash(0.65), T + 2410);
+
+  // 2530-2600ms: мощная серия — яркие вспышки
+  setTimeout(() => flash(0.75), T + 2530);
+  setTimeout(() => flash(0.85), T + 2580);
+  setTimeout(() => flash(0.9),  T + 2600);
+
+  // 2680ms: отголосок
+  setTimeout(() => flash(0.5), T + 2680);
+
+  // 2930ms: ФИНАЛЬНОЕ ВКЛЮЧЕНИЕ — зажглась!
+  setTimeout(() => {
+    title.style.transition = 'opacity 0.6s ease-out, text-shadow 0.6s ease-out, color 0.6s ease-out';
+    titleGlow.style.transition = 'opacity 0.6s ease-out';
+    setTitleState(true, 1);
+  }, T + 2930);
+
+  // 4.5с (от старта) — включается название видео
+  setTimeout(() => {
+    playNeonSmall(0);
+
+    // Визуал: мягкие вспышки синхронно со звуком
+    setTimeout(() => {
+      videoTitle.style.opacity = 0.4;
+      videoTitle.style.color = '#d4a843';
+      videoTitle.style.textShadow = GLOW_SMALL_ON;
+      videoTitleGlow.style.opacity = 0.4;
+    }, 50);
+    // Первое клацанье (0.3с в звуке)
+    setTimeout(() => {
+      videoTitle.style.opacity = 0.6;
+      videoTitleGlow.style.opacity = 0.6;
+    }, 300);
+    setTimeout(() => {
+      videoTitle.style.opacity = 0.15;
+      videoTitle.style.textShadow = 'none';
+      videoTitleGlow.style.opacity = 0;
+    }, 360);
+    // Второе клацанье (0.65с) — зажглась
+    setTimeout(() => {
+      videoTitle.style.transition = 'opacity 0.5s ease-out, text-shadow 0.5s ease-out';
+      videoTitleGlow.style.transition = 'opacity 0.5s ease-out';
+      videoTitle.style.opacity = 1;
+      videoTitle.style.color = '#d4a843';
+      videoTitle.style.textShadow = GLOW_SMALL_ON;
+      videoTitleGlow.style.opacity = 1;
+    }, 650);
+
+    // Replay кнопка через 5с
+    setTimeout(() => {
+      replayBtn.classList.add('visible');
+    }, 5000);
+  }, T + 3700);
+
+})();
+</script>
+
+</body>
+</html>

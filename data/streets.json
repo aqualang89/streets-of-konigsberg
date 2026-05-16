@@ -5,5 +5,19 @@
     "oldName": "Hindenburgstraße / Hauptstraße",
     "page": "streets/leninsky-prospekt.html",
     "shortDesc": "Главная магистраль современного центра Калининграда. В прусском Кёнигсберге — Hauptstraße, главная улица Альтштадта."
+  },
+  {
+    "id": "mishina",
+    "name": "ул. Сержанта Мишина",
+    "oldName": "Gottschedstraße",
+    "page": "streets/mishina.html",
+    "shortDesc": "Тенистая аллея Марауненхофа, названная в честь немецкого литературного теоретика Готтшеда. Сегодня — улица Героя Советского Союза Ивана Мишина."
+  },
+  {
+    "id": "rokossovskogo",
+    "name": "ул. Маршала Рокоссовского",
+    "oldName": "Am Fließ / Traghaimer Pulverstraße",
+    "page": "streets/rokossovskogo.html",
+    "shortDesc": "Древняя магистраль «У ручья» и Пороховая улица крепости. Названа в честь маршала Победы Константина Рокоссовского."
   }
 ]
