@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "update-streets": "node scripts/fetch-streets.mjs"
+  },
   "dependencies": {
     "@distube/ytdl-core": "^4.16.12"
   }

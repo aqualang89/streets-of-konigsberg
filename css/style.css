@@ -1312,3 +1312,44 @@ body {
   .map-popup-name { font-size: 1rem; }
   .map-popup-desc { font-size: 0.82rem; }
 }
+
+/* =============================================
+   КЛАСТЕРЫ МАРКЕРОВ (leaflet.markercluster)
+   ============================================= */
+
+.street-cluster {
+  background: transparent !important;
+  border: none !important;
+}
+
+.street-cluster-inner {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--color-gold-light), var(--color-gold) 55%, var(--color-sepia-dark) 100%);
+  border: 2px solid var(--color-parchment);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: var(--color-bg-dark);
+  font-family: var(--font-cinzel);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.street-cluster-inner:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 14px var(--color-gold);
+}
+
+/* Анимация раскрытия кластера */
+.marker-cluster-spider-leg {
+  stroke: var(--color-gold);
+  stroke-opacity: 0.65;
+}
